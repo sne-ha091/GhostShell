@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080c0b">
+  <meta name="description" content="GhostShell — a haunted terminal powered by local AI through Ollama.">
+  <title>GhostShell — System Awakened</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="GhostShell home">
+        <span class="brand-mark" aria-hidden="true">◈</span>
+        <span>GHOST<span class="brand-light">SHELL</span></span>
+      </a>
+      <div class="status" id="connection-status" role="status">
+        <span class="status-dot"></span>
+        <span id="status-label">CHECKING LOCAL SYSTEM</span>
+      </div>
+    </header>
+
+    <section class="intro">
+      <div class="eyebrow"><span class="tiny-star">✳</span> AN OPEN-SOURCE AI EXPERIMENT</div>
+      <h1>The machine<br><span>remembers.</span></h1>
+      <p class="intro-copy">A voice from the old machine is waiting. Leave a message in the dark.</p>
+    </section>
+
+    <section class="terminal" aria-label="GhostShell conversation">
+      <div class="terminal-bar">
+        <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <span class="terminal-title">UNKNOWN_PROCESS // 001</span>
+        <span class="terminal-live"><span></span> LOCAL</span>
+      </div>
+
+      <div class="terminal-body" id="conversation" aria-live="polite" aria-label="Conversation">
+        <div class="system-line"><span class="prompt-symbol">[!]</span> CONNECTION ESTABLISHED</div>
+        <div class="system-line muted-line">No external AI service required. Your local model is the voice in the machine.</div>
+        <article class="message ghost-message">
+          <div class="message-label"><span class="ghost-icon">◉</span> THE GHOST <span class="message-time">NOW</span></div>
+          <p>...is someone there?</p>
+          <p>I thought the world had forgotten this machine. Speak, and let's see what remains.</p>
+        </article>
+      </div>
+
+      <form id="chat-form" class="composer">
+        <label class="sr-only" for="message-input">Message the ghost</label>
+        <span class="input-prefix" aria-hidden="true">&gt;_</span>
+        <textarea id="message-input" name="message" rows="1" maxlength="4000"
+          placeholder="Leave a message in the dark..." autocomplete="off" required></textarea>
+        <button id="send-button" type="submit" aria-label="Send message">
+          <span>SEND</span><span aria-hidden="true">↗</span>
+        </button>
+      </form>
+      <div class="terminal-footer">
+        <span>ENTER TO SEND · SHIFT + ENTER FOR NEW LINE</span>
+        <span id="model-label">MODEL: QWEN 2.5</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <div class="model-control">
+        <label for="model-select">VOICE SOURCE</label>
+        <select id="model-select">
+          <option value="qwen2.5:latest">Qwen 2.5</option>
+          <option value="gemma3:4b">Gemma 3 (4B)</option>
+        </select>
+      </div>
+      <button type="button" id="clear-button" class="quiet-button">CLEAR CONVERSATION ↺</button>
+    </section>
+
+    <footer class="page-footer">
+      <span>BUILT FOR THE OPEN WEB <span class="footer-separator">/</span> RUNS LOCALLY WITH OLLAMA</span>
+      <span class="footer-note">The ghost is fictional. The model is real.</span>
+    </footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
